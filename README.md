@@ -2,26 +2,64 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
 
-## Development server
+# 🐞 bug report
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Affected Package
+`@angular/compiler`
+`@angular/router`
 
-## Code scaffolding
+### Is this a regression?
+Not sure
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Description
+Conditional Routing works on JIT, But not with AOT.
+However, compiler does not show any warning. 
 
-## Build
+## 🔬 Minimal Reproduction
+use the following repo
+https://github.com/yuvalbl/ng-aot-routing-issue
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+check out [app-routing](https://github.com/yuvalbl/ng-aot-routing-issue/blob/master/src/app/app-routing.module.ts)
 
-## Running unit tests
+steps:
+1. clone repo 
+2. `npm i`
+3. `ng build --aot`
+4. from `dist` directory run `npx serve -s` to serve the created build files
+5. open the browser on full screen (more than 768 width) and see `Mobile` is displayed instead of `desktop`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🔥 Exception or Error
+None (probably should show an error if Conditional Routing is not supported in AOT uet
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## 🌍  Your Environment
 
-## Further help
+**Angular Version:**
+<pre><code>
+Angular CLI: 9.1.0
+Node: 12.14.1
+OS: linux x64
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Angular: 9.1.0
+... animations, cli, common, compiler, compiler-cli, core, forms
+... language-service, platform-browser, platform-browser-dynamic
+... router
+Ivy Workspace: Yes
+
+Package                           Version
+-----------------------------------------------------------
+@angular-devkit/architect         0.901.0
+@angular-devkit/build-angular     0.901.0
+@angular-devkit/build-optimizer   0.901.0
+@angular-devkit/build-webpack     0.901.0
+@angular-devkit/core              9.1.0
+@angular-devkit/schematics        9.1.0
+@ngtools/webpack                  9.1.0
+@schematics/angular               9.1.0
+@schematics/update                0.901.0
+rxjs                              6.5.4
+typescript                        3.8.3
+webpack                           4.42.0
+
+</code></pre>
+
